@@ -179,6 +179,17 @@ void setup_unpack_trees_porcelain(struct unpack_trees_options *opts,
 		opts->unpack_rejects[i].strdup_strings = 1;
 }
 
+void clear_unpack_trees_porcelain(struct unpack_trees_options *opts)
+{
+	char **msgs = (char **)opts->msgs;
+
+	free(msgs[ERROR_WOULD_OVERWRITE]);
+	free(msgs[ERROR_WOULD_LOSE_UNTRACKED_REMOVED]);
+	free(msgs[ERROR_WOULD_LOSE_UNTRACKED_OVERWRITTEN]);
+
+	memset(opts->msgs, 0, sizeof(opts->msgs));
+}
+
 static int do_add_entry(struct unpack_trees_options *o, struct cache_entry *ce,
 			 unsigned int set, unsigned int clear)
 {
