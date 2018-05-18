@@ -1575,7 +1575,7 @@ out:
 }
 
 define_commit_slab(merge_desc_slab, struct merge_remote_desc *);
-struct merge_desc_slab merge_desc_slab = COMMIT_SLAB_INIT(1, merge_desc_slab);
+static struct merge_desc_slab merge_desc_slab = COMMIT_SLAB_INIT(1, merge_desc_slab);
 
 struct merge_remote_desc *merge_remote_util(struct commit *commit)
 {
